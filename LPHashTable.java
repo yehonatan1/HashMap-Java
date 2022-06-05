@@ -10,6 +10,7 @@ public class LPHashTable extends OAHashTable {
 	@Override
 	public int Hash(long x, int i) {
 		// TODO implement hash function
+
 		return 0;
 	}
 	
