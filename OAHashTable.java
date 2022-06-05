@@ -1,28 +1,41 @@
 
 public abstract class OAHashTable implements IHashTable {
 	
-	private HashTableElement [] table;
+	private final HashTableElement [] table;
+	private final int m;
 	
 	public OAHashTable(int m) {
 		this.table = new HashTableElement[m];
-		// TODO add to constructor as needed
+		this.m = m;
 	}
 	
 	
 	@Override
 	public HashTableElement Find(long key) {
-		// TODO implement find
+		int index = findElementIndex(key);
+		if (index != -1)
+			return table[index];
 		return null;
 	}
 	
 	@Override
 	public void Insert(HashTableElement hte) throws TableIsFullException,KeyAlreadyExistsException {
-		// TODO implement insertion	
+		for (int i = 0; i < m; i++){
+			if (table[Hash(hte.GetKey(), i)] == null || table[Hash(hte.GetKey(), i)].isEmpty()){
+				table[Hash(hte.GetKey(), i)] = hte;
+				return;
+			} else if (table[Hash(hte.GetKey(), i)].GetKey() == hte.GetKey())
+				throw new KeyAlreadyExistsException(hte);
+		}
+		throw new TableIsFullException(hte);
 	}
 	
 	@Override
 	public void Delete(long key) throws KeyDoesntExistException {
-		// TODO implement deletion
+		int index = findElementIndex(key);
+		if (index == -1)
+			throw new KeyDoesntExistException(key);
+		table[index] = new HashTableElement.EmptyHashTableElement();
 	}
 	
 	/**
@@ -32,4 +45,14 @@ public abstract class OAHashTable implements IHashTable {
 	 * @return the index into the hash table to place the key x
 	 */
 	public abstract int Hash(long x, int i);
+
+	private int findElementIndex(long key){
+		for (int i = 0; i < m; i++){
+			if (!table[Hash(key, i)].isEmpty() && table[Hash(key, i)].GetKey() == key)
+				return Hash(key, i);
+			else if (table[Hash(key, i)] == null)
+				return -1;
+		}
+		return -1;
+	}
 }

@@ -11,4 +11,16 @@ public class HashTableElement{
 	public long GetKey() { return this.key;}
 	
 	public long GetValue() { return this.value;}
+
+	public boolean isEmpty() { return false;}
+
+	public static class EmptyHashTableElement extends HashTableElement{
+
+		public EmptyHashTableElement() {
+			super(0, 0);
+		}
+
+		@Override
+		public boolean isEmpty() { return true;}
+	}
 }
