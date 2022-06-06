@@ -13,12 +13,10 @@ public class DoubleHashTable extends OAHashTable {
         this.p = p;
         modHash1 = ModHash.GetFunc(m, p);
         modHash2 = ModHash.GetFunc(m, p);
-        // TODO Complete hash table constructor.
     }
 
     @Override
     public int Hash(long x, int i) {
-        // TODO implement hash function
         return (modHash1.Hash(x) + modHash2.Hash(x) * i) % m;
     }
 
