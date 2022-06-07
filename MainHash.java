@@ -5,8 +5,8 @@ public class MainHash {
         int m = 10000019;
         long p = 1000000007;
         int n = Math.floorDiv(m, 2);
-        int array[] = new int[n];
-        Random random = new Random(2999);
+        int[] array = new int[n];
+        Random random = new Random();
         int a, b;
         OAHashTable table = new DoubleHashTable(m, p);
         long startTime = System.currentTimeMillis();

@@ -3,8 +3,9 @@ import java.util.Random;
 public class ModHash {
 
 
-    long a, b, p;
-    int m;
+    final long a, b, p;
+    final int m;
+    final static Random random = new Random();
 
     public ModHash(long a, long b, long p, int m) {
         this.a = a;
@@ -14,13 +15,16 @@ public class ModHash {
     }
 
     public static ModHash GetFunc(int m, long p) {
-        Random random = new Random(10);
+
         long a = 1 + (random.nextLong() % (p - 1)); // a can't be zero
         long b = random.nextLong() % p;
         return new ModHash(a, b, p, m);
     }
 
     public int Hash(long key) {
-        return (int) (((a * key + b) % p) % m);
+        int y = (int) (((a * key + b) % p) % m);
+        if (y < 0)
+            y += m;
+        return y;
     }
 }

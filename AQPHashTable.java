@@ -2,9 +2,9 @@ import java.util.Random;
 
 public class AQPHashTable extends OAHashTable {
 
-    int m;
-    long p;
-    ModHash modHash;
+    final int m;
+    final long p;
+    final ModHash modHash;
 
     public AQPHashTable(int m, long p) {
         super(m);

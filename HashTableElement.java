@@ -1,7 +1,7 @@
 
 public class HashTableElement{
-	private long key;
-	private long value;
+	private final long key;
+	private final long value;
 	
 	public HashTableElement(long key, long value) {
 		this.key = key;
