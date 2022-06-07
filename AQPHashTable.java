@@ -15,7 +15,12 @@ public class AQPHashTable extends OAHashTable {
 
     @Override
     public int Hash(long x, int i) {
-        int y = (int) ((modHash.Hash(x) + Math.pow(-1, i) * Math.pow(i, 2)) % m);
+        int z;
+        if (i % 2 == 0)
+            z = 1;
+        else
+            z = -1;
+        int y = ((modHash.Hash(x) + z * (i * i)) % m);
         if (y < 0)
             y += m;
         return y;
