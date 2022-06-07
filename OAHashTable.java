@@ -21,10 +21,11 @@ public abstract class OAHashTable implements IHashTable {
 	@Override
 	public void Insert(HashTableElement hte) throws TableIsFullException,KeyAlreadyExistsException {
 		for (int i = 0; i < m; i++){
-			if (table[Hash(hte.GetKey(), i)] == null || table[Hash(hte.GetKey(), i)].isEmpty()){
-				table[Hash(hte.GetKey(), i)] = hte;
+			int index = Hash(hte.GetKey(), i);
+			if (table[index] == null || table[index].isEmpty()){
+				table[index] = hte;
 				return;
-			} else if (table[Hash(hte.GetKey(), i)].GetKey() == hte.GetKey())
+			} else if (table[index].GetKey() == hte.GetKey())
 				throw new KeyAlreadyExistsException(hte);
 		}
 		throw new TableIsFullException(hte);
