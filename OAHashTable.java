@@ -49,9 +49,10 @@ public abstract class OAHashTable implements IHashTable {
 
 	private int findElementIndex(long key){
 		for (int i = 0; i < m; i++){
-			if (!table[Hash(key, i)].isEmpty() && table[Hash(key, i)].GetKey() == key)
-				return Hash(key, i);
-			else if (table[Hash(key, i)] == null)
+			int index = Hash(key, i);
+			if (!table[index].isEmpty() && table[index].GetKey() == key)
+				return index;
+			else if (table[index] == null)
 				return -1;
 		}
 		return -1;
