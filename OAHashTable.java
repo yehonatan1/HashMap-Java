@@ -22,7 +22,6 @@ public abstract class OAHashTable implements IHashTable {
 	public void Insert(HashTableElement hte) throws TableIsFullException,KeyAlreadyExistsException {
 		for (int i = 0; i < m; i++){
 			int index = Hash(hte.GetKey(), i);
-			System.out.println(index);
 			if (table[index] == null || table[index].isEmpty()){
 				table[index] = hte;
 				return;
