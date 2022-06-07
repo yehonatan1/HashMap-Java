@@ -17,7 +17,10 @@ public class DoubleHashTable extends OAHashTable {
 
     @Override
     public int Hash(long x, int i) {
-        return (modHash1.Hash(x) + modHash2.Hash(x) * i) % m;
+        int y = (modHash1.Hash(x) + modHash2.Hash(x) * i) % m;
+        if (y < 0)
+            y += m;
+        return y;
     }
 
 }
