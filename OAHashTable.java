@@ -28,7 +28,7 @@ public abstract class OAHashTable implements IHashTable {
             } else if (table[index].isEmpty()) {
                 table[index] = hte;
                 for (int j = i + 1; j < m; j++) {
-                    index = Hash(hte.GetKey(), i);
+                    index = Hash(hte.GetKey(), j);
                     if (table[index] == null)
                         return;
                     else if (!table[index].isEmpty() && table[index].GetKey() == hte.GetKey())
